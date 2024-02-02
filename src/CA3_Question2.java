@@ -57,19 +57,26 @@ public class CA3_Question2
        pairs.push(new pair(x,y));
        System.out.println("Current Pairs"+pairs);
        boolean finished=false;
-       while(finished=false)
+       arr[x][y]=1;
+        int fillinnumber=2;
+        pair currentpair=new pair(1,1);
+
+       while(finished==false)
        {
+        currentpair=pairs.pop();
+        pairs.push(new pair(currentpair.x+1,currentpair.y));
+        pairs.push(new pair(currentpair.x,currentpair.y));
+        pairs.push(new pair(currentpair.x,currentpair.y));
+        pairs.push(new pair(currentpair.x,currentpair.y));
 
        }
 
 
-        display(arr);
+       display(arr);
 
     }
     public static void main(String[] args)
     {
         start();
-
     }
-
 }
