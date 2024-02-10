@@ -1,5 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.sql.SQLOutput;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -12,25 +14,53 @@ import java.util.Scanner;
 public class CA3_Question3
 {
     public static void readFile(String fileName) throws FileNotFoundException {
-        int currentlinenum=0;
-        String line;
-        Map<String, Integer> question3 = new HashMap<>();
-        //in.useDelimiter("[^A-Za-z0-9_]+");
+        //Setting up variables
+        ArrayList<String> Identifiers = new ArrayList<>();
+        Identifiers.add("Eoin");
+        Identifiers.add("Hamill");
+        Identifiers.add("GD2a");
+        Identifiers.add("input");
+
+
+        int lineNumber=0;
+        //Creating Map
+        Map<String, String> question3 = new HashMap<>();
+
+        //Creating scanner to read from file
         File file = new File(fileName);
-        Scanner s = new Scanner(file);
+        Scanner scanner = new Scanner(file);
 
-        s.useDelimiter(("[^A-Za-z0-9_]+"));
 
-        while(s.hasNextLine()) {
-            currentlinenum++;
-            line =s.nextLine();
-            System.out.println(line);
-            System.out.println("\nTest");
+        //While loop which reads a new line
+        while(scanner.hasNextLine())
+        {
+            lineNumber++;
+            String line = scanner.nextLine();
+            Scanner scanner2 = new Scanner(line);
+            scanner2.useDelimiter("[^A-Za-z0-9_]+");
 
+            while(scanner2.hasNext()) {
+                String token = scanner2.next();
+                if(Identifiers.contains(token)) {
+                    if(question3.get(token)==null) {
+                        question3.put(token, Integer.toString(lineNumber));
+                    }
+                    else
+                    {
+                        String value=question3.get(token)+", "+lineNumber;
+                        question3.put(token,value);
+                    }
+                }
+
+            }
 
         }
 
-    }
+        System.out.println(question3);
+        }
+
+
+
 
     public static void main(String[] args) throws FileNotFoundException {
         readFile("src/CA3_Question1.java");
