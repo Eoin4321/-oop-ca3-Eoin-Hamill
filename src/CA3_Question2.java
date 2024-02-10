@@ -59,20 +59,29 @@ public class CA3_Question2
        boolean finished=false;
        arr[x][y]=1;
         int fillinnumber=2;
-        pair currentpair=new pair(1,1);
+        pair currentpair=new pair(x,y);
 
-       while(finished==false)
+       while(!pairs.isEmpty())
        {
+           System.out.println("\n");
         currentpair=pairs.pop();
-        pairs.push(new pair(currentpair.x+1,currentpair.y));
-        pairs.push(new pair(currentpair.x,currentpair.y));
-        pairs.push(new pair(currentpair.x,currentpair.y));
-        pairs.push(new pair(currentpair.x,currentpair.y));
+        //Checking North
+        if(currentpair.x>0 && arr[currentpair.x-1][currentpair.y]==0)
+        {
+         pairs.push(new pair(currentpair.x-1, currentpair.y));
+        }
+        //Checking East
+           else if(currentpair.y<9 && arr[currentpair.x][currentpair.y-1]==0)
+        {
+            pairs.push(new pair(currentpair.x, currentpair.y-1));
+        }
+        //pairs.push(new pair(currentpair.x-1,currentpair.y));
+        arr[currentpair.getX()][currentpair.getY()]=1;
+
+        display(arr);
+           System.out.println("\n");
 
        }
-
-
-       display(arr);
 
     }
     public static void main(String[] args)
