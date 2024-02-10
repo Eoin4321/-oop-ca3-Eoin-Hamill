@@ -11,9 +11,6 @@ public class CA3_Question1
         Scanner input = new Scanner(System.in);
         Stack<Integer> driveway = new Stack<Integer>();
         Stack<Integer> street = new Stack<Integer>();
-        driveway.push(1);
-        driveway.push(7);
-        driveway.push(4);
         int menu = 1;
         while (menu != 0) {
             System.out.println("Please enter a car number to add or remove to the driveway.");
