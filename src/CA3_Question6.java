@@ -34,6 +34,7 @@ public class CA3_Question6
                 int qty = in.nextInt();
                 System.out.println("Enter the price you will be paying");
                 double price = in.nextDouble();
+                //Adding the inputs to the queue
                 blocks.add(new Block(qty, price));
 
             }
@@ -44,30 +45,36 @@ public class CA3_Question6
                 System.out.println("Enter the price you will be paying");
                 double price = in.nextDouble();
                 boolean selling = true;
+                //A while loop to run while qty is sufficent. It will be turned off if it runs out.
                 while(selling==true)
                 {
+                    //If there is blocks remaining it will keep removing them
                     if(!blocks.isEmpty()) {
+                        //Adding up the total profit. price sold at-price bought at. Then i remove 1 from the quantity
                         profit = (price - blocks.peek().getPrice()) + (profit);
                         qty = qty - 1;
                         blocks.peek().setQuantity(blocks.peek().getQuantity() - 1);
                     }
+                    //If a block runs out of quantity I remove it from the queue
                     if(blocks.peek().getQuantity()==0)
                     {
                         blocks.poll();
                     }
+                    //If the quantity to sell runs out I end the while loop
                     if(qty==0)
                     {
                         selling=false;
                     }
+                    //if the blocks to sell runs out I end the while loop and return the amount unable to be sold
                     if(blocks.isEmpty())
                     {
-                        System.out.println("Remaining "+qty);
+                        System.out.println("Amount unable to be sold: "+qty);
                         selling=false;
                     }
 
                 }
-                    //profit=(profit+((blocks.peek().getQuantity()*price)-(blocks.peek().getQuantity()*blocks.peek().getPrice())));
 
+                //Returning the profit made so far
                 System.out.println("You made "+profit+" Euro");
             }
         }while(!command.equalsIgnoreCase("quit"));
