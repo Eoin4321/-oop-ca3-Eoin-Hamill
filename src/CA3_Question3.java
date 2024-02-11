@@ -16,11 +16,6 @@ public class CA3_Question3
     public static void readFile(String fileName) throws FileNotFoundException {
         //Setting up variables
         ArrayList<String> Identifiers = new ArrayList<>();
-        Identifiers.add("Eoin");
-        Identifiers.add("Hamill");
-        Identifiers.add("GD2a");
-        Identifiers.add("input");
-
 
         int lineNumber=0;
         //Creating Map
@@ -41,6 +36,11 @@ public class CA3_Question3
 
             while(scanner2.hasNext()) {
                 String token = scanner2.next();
+
+                if(!Identifiers.contains(token)){
+                    Identifiers.add(token);
+                }
+
                 if(Identifiers.contains(token)) {
                     if(question3.get(token)==null) {
                         question3.put(token, Integer.toString(lineNumber));
