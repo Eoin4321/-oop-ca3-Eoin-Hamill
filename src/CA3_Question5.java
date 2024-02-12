@@ -13,10 +13,9 @@ public class CA3_Question5
     public static void main(String[] args)
     {
         double profit=0;
-        //Setting up queue using the Block class i created. This contains qty and price.
-        Queue<Block> blocks = new LinkedList<>();
         //adding a scanner to take input
         Scanner input = new Scanner(System.in);
+        //Creating both the separate queues
         Queue<String> takeoff = new LinkedList<String>();
         Queue<String> landing = new LinkedList<String>();
         boolean on = true;
@@ -27,7 +26,7 @@ public class CA3_Question5
                     "\ntype: next - to run the software" +
                     "\ntype: quit - to end the software");
             String taken = input.next();
-
+            //If user decides to quit the software turn on to false.
             if(taken.equals("quit"))
             {
                 on=false;

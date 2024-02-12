@@ -2,8 +2,8 @@ import java.util.Scanner;
 import java.util.Stack;
 
 /**
- *  Name:
- *  Class Group:
+ *  Name: Eoin Hamill
+ *  Class Group: GD2a
  */
 public class CA3_Question2
 {
@@ -44,39 +44,48 @@ public class CA3_Question2
 
     public static void start()
     {
+        //Creating stack of pairs
         Stack<pair> pairs = new Stack<pair>();
        int[][] arr = floodFillStart();
        System.out.println("Stack before fill:\n");
        display(arr);
-       System.out.println("Stack after fill:\n");
        Scanner input = new Scanner(System.in);
        System.out.println("Please enter the x location.");
        int x= input.nextInt();
        System.out.println("Please enter the y location.");
        int y= input.nextInt();
+       //putting the pair ontop of the stack
        pairs.push(new pair(x,y));
        System.out.println("Current Pairs"+pairs);
        boolean finished=false;
+       //filling in first letter
        arr[x][y]=1;
-        int fillinnumber=2;
+        int fillinnumber=1;
         pair currentpair=new pair(x,y);
 
+        //While pairs is not empty
        while(!pairs.isEmpty())
        {
            System.out.println("\n");
+           //removing the pair from the top and setting it to this variable
         currentpair=pairs.pop();
         //Checking North
         if(currentpair.x>0 && arr[currentpair.x-1][currentpair.y]==0)
         {
+            //adding new pair ontop of stack for location one north
          pairs.push(new pair(currentpair.x-1, currentpair.y));
         }
         //Checking East
            else if(currentpair.y<9 && arr[currentpair.x][currentpair.y-1]==0)
         {
+            //adding new pair ontop of stack for location one north
             pairs.push(new pair(currentpair.x, currentpair.y-1));
         }
         //pairs.push(new pair(currentpair.x-1,currentpair.y));
-        arr[currentpair.getX()][currentpair.getY()]=1;
+           //Filling in number
+        arr[currentpair.getX()][currentpair.getY()]=fillinnumber;
+           //adding one to fillinnumber so number increases with each fill
+           fillinnumber++;
 
         display(arr);
            System.out.println("\n");
